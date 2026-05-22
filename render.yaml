@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: team-task-manager-api
+    runtime: node
+    plan: free
+    rootDir: server
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 18.17.0
+      - key: CLIENT_URL
+        value: https://client-eight-zeta-40.vercel.app
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MONGO_URI
+        sync: false
